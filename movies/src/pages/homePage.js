@@ -21,6 +21,7 @@ const HomePage = (props) => {
   }, []);
 
   return (
+   
     <PageTemplate
       title='Discover Movies'
       movies={movies}

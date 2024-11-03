@@ -6,6 +6,7 @@ const useMovie = id => {
   useEffect(() => {
     getMovie(id).then(movie => {
       setMovie(movie);
+      
     });
   }, [id]);
   return [movie, setMovie];
