@@ -24,7 +24,7 @@ const UpcomingPage = (props) => {
       title="Upcoming Movies"
       movies={movies}
       action={(movie) => {
-        return <PlaylistAdd />;
+        return <PlaylistAdd movie={movie}/>;
       }}
     />
   );
