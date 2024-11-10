@@ -9,6 +9,10 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
+import ExploreIcon from '@mui/icons-material/Explore';
+import { useNavigate } from "react-router-dom";
+
+
 
 const root = {
     display: "flex",
@@ -18,12 +22,18 @@ const root = {
     padding: 1.5,
     margin: 0,
 };
-const chip = { margin: 0.5 };
+
 
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
-  console.log(movie);
+  // console.log(movie);
+  const chip = { margin: 0.5 };
+  const navigate = useNavigate();  
+
+    const handleClick = () => {
+        navigate(`/movies/${movie.id}/recommendations`);  
+    };
 
   return (
     <>
@@ -73,6 +83,21 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           </li>
         ))}
       </Paper>
+
+      <Fab
+        color="secondary"
+        variant="extended"
+        onClick={handleClick}
+        sx={{
+          position: 'fixed',
+          bottom: '1em',
+          right: '10em'
+        }}
+      >
+        <ExploreIcon />
+        
+        Recommendations
+      </Fab>
       
       <Fab
         color="secondary"
@@ -87,6 +112,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <NavigationIcon />
         Reviews
       </Fab>
+
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
