@@ -1,4 +1,4 @@
-import React, {useState, useEffect}  from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -13,6 +13,7 @@ import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import Slider from "@mui/material/Slider";
 
 const formControl = 
   {
@@ -42,12 +43,15 @@ export default function FilterMoviesCard(props) {
     props.onUserInput(type, value); // NEW
   };
 
-  const handleTextChange = (e, props) => {
+  const handleTextChange = (e) => {
     handleChange(e, "name", e.target.value);
   };
 
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
+  };
+  const handleRatingChange = (e) => {
+    handleChange(e, "rating", e.target.value);
   };
   
   return (
@@ -88,6 +92,17 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+        <Typography variant="subtitle1">Rating</Typography>
+        <Slider
+          sx={{ ...formControl }}
+          value={props.ratingFilter}
+          onChange={handleRatingChange}
+          aria-labelledby="rating-slider"
+          min={0}
+          max={10}
+          step={0.1}
+          valueLabelDisplay="auto"
+        />
       </CardContent>
       <CardMedia
         sx={{ height: 300 }}

@@ -9,7 +9,7 @@ import Spinner from '../components/spinner'
 import { getMovieCredits } from "../api/tmdb-api";
 import CastList from "../components/CastMemberList";
 
-const MoviePage = (props) => {
+const MoviePage = () => {
   const { id } = useParams();
 
   const { data: movie, error: movieError, isLoading: isMovieLoading, isError: isMovieError } = useQuery(

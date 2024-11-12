@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import PlaylistAdd from "../components/cardIcons/PlaylistAdd";
 
-const UpcomingPage = (props) => {
+const UpcomingPage = () => {
   const { data, error, isLoading, isError } = useQuery('upcoming', getUpComingMovies);
 
   if (isLoading) {

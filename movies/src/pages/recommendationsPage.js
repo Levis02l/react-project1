@@ -8,7 +8,7 @@ import PageTemplate from '../components/templateMovieListPage';
 
 
 
-const RecommendationsPage = (props) => {
+const RecommendationsPage = () => {
 
   const { id } = useParams();
   const { data: movies, error, isLoading, isError } = useQuery(

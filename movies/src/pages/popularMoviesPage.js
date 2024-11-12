@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 
 
-const PopularMoviesPage = (props) => {
+const PopularMoviesPage = () => {
 
   const {  data, error, isLoading, isError }  = useQuery('popular', getPopularMovies)
 
