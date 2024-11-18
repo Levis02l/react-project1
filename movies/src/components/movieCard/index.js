@@ -14,9 +14,10 @@ import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import React, { useContext  } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 export default function MovieCard({ movie, action }) {
-  const { favorites} = useContext(MoviesContext);
+  const { favorites, mustWatch} = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -24,16 +25,29 @@ export default function MovieCard({ movie, action }) {
     movie.favorite = false
   }
 
+  if (mustWatch.find((id) => id === movie.id)) {
+    movie.mustWatch = true;
+  } else {
+    movie.mustWatch = false;
+  }
+
   
   return (
     <Card>
       <CardHeader
         avatar={
-          movie.favorite ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
+          <>
+          {movie.favorite ? (
+              <Avatar sx={{ backgroundColor: "red" }}>
+                <FavoriteIcon />
+              </Avatar>
+            ) : null}
+            {movie.mustWatch ? (
+              <Avatar sx={{ backgroundColor: "blue" }}>
+                <BookmarkIcon />
+              </Avatar>
+            ) : null}
+          </>
         }
         title={
           <Typography variant="h5" component="p">

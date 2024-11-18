@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import PlaylistAdd from "../components/cardIcons/PlaylistAdd";
 import { Pagination } from "@mui/material";
+import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 const UpcomingPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -26,7 +27,10 @@ const UpcomingPage = () => {
       title="Upcoming Movies"
       movies={movies}
       action={(movie) => {
-        return <PlaylistAdd movie={movie}/>
+        return <>
+            <AddToFavoritesIcon movie={movie} />
+            <PlaylistAdd movie={movie} />
+          </>
             
             
       }}

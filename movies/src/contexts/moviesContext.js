@@ -31,21 +31,29 @@ const MoviesContextProvider = (props) => {
   // console.log(myReviews);
 
   const addToMustWatch = (movie) => {
+    let newMustWatch = [];
     if (!mustWatch.includes(movie.id)) {
-      const newMustWatch = [...mustWatch, movie.id];
-      setMustWatch(newMustWatch);
-      console.log(newMustWatch);  
+      newMustWatch = [...mustWatch, movie.id];
+    } else {
+      newMustWatch = [...mustWatch];
     }
+      setMustWatch(newMustWatch);
   };
 
+  const removeFromMustWatch = (movie) => {
+    setMustWatch(mustWatch.filter((mId) => mId !== movie.id));
+  };
+ 
   return (
     <MoviesContext.Provider
       value={{
         favorites,
+        mustWatch,
         addToFavorites,
         removeFromFavorites,
         addReview,
         addToMustWatch,
+        removeFromMustWatch,
       }}
     >
       {props.children}
