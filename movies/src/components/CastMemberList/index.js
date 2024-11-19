@@ -1,27 +1,49 @@
 import CastMember from "../CastMember";
 import React from 'react';
-import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
+import { Button} from "@mui/material";
+import { Link } from "react-router-dom";
 
-const CastList = ({ cast }) => {
+const CastList = ({ cast,id }) => {
 
     return (
         <>
             <Typography variant="h5" component="h2" gutterBottom style={{ margin: '1em 0' }}>
                 Top Billed Cast
             </Typography>
-            <Grid container spacing={3} justifyContent="center">
+            <Box
+                sx={{
+                    display: "flex",
+                    overflowX: "auto",
+                    gap: "1em",
+                    padding: "1em 0",
+                }}
+            >
                 {cast.map((actor) => (
-                    <Grid key={actor.id} xs={6} sm={4} md={3} lg={2}>
+                    <Box key={actor.id} sx={{ minWidth: 180 }}>
                         <CastMember
                             profilePath={actor.profile_path}
                             name={actor.name}
                             character={actor.character}
                             actorId={actor.id}
                         />
-                    </Grid>
+                    </Box>
                 ))}
-            </Grid>
+                <Button
+                    component={Link}
+                    to={`/movies/${id}/full-cast`}
+                    variant="contained"
+                    color="primary"
+                    sx={{
+                        alignSelf: "center",
+                        minWidth: 150,
+                        height: "100%",
+                    }}
+                >
+                    View More
+                </Button>
+            </Box>
         </>
     );
 };

@@ -39,7 +39,7 @@ const MoviePage = () => {
         <>
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
-            <CastList cast={credits.cast.slice(0, 7)} />
+            <CastList cast={credits.cast.slice(0,10)} id={id} />
           </PageTemplate>
         </>
       ) : (
