@@ -8,6 +8,8 @@ import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 import { getMovieCredits } from "../api/tmdb-api";
 import CastList from "../components/CastMemberList";
+import { getMovieVideos } from "../api/tmdb-api";
+import VideoList from "../components/VideoList";
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -20,8 +22,12 @@ const MoviePage = () => {
     ["credits", { id: id }],
     getMovieCredits
   );
-
-  if (isMovieLoading || isCreditsLoading) {
+  const { data: videos, error: videosError, isLoading: isVideosLoading,isError: isVideosError } = useQuery(
+    ["videos", { id }],
+    getMovieVideos
+  );
+  
+  if (isMovieLoading || isCreditsLoading ||isVideosLoading) {
     return <Spinner />;
   }
 
@@ -33,6 +39,10 @@ const MoviePage = () => {
     return <h1>{creditsError.message}</h1>;
   }
 
+  if (isVideosError) {
+    return <h1>{videosError.message}</h1>;
+  }
+
   return (
     <>
       {movie && credits ? (
@@ -40,6 +50,7 @@ const MoviePage = () => {
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
             <CastList cast={credits.cast.slice(0,10)} id={id} />
+            <VideoList videos={videos.results.slice(0,3)}/>
           </PageTemplate>
         </>
       ) : (

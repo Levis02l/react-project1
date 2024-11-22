@@ -33,7 +33,7 @@ const WatchListPage = () => {
 
   return (
     <PageTemplate
-      title="Upcoming Movies"
+      title="WatchList"
       movies={movies}
       action={(movie) => {
         return <RemoveFromWatchListIcon movie={movie} />

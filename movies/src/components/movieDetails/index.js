@@ -12,8 +12,6 @@ import MovieReviews from "../movieReviews"
 import ExploreIcon from '@mui/icons-material/Explore';
 import { useNavigate } from "react-router-dom";
 
-
-
 const root = {
     display: "flex",
     justifyContent: "center",
@@ -25,7 +23,7 @@ const root = {
 
 
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie}) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
   // console.log(movie);
   const chip = { margin: 0.5 };

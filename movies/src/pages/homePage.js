@@ -44,7 +44,7 @@ const HomePage = () => {
         }}
       />
       <Pagination
-        count={500}
+         count={Math.min(Math.ceil(data.total_results / 20), 500)}
         page={currentPage}
         onChange={(event, value) => setCurrentPage(value)}
         sx={{
